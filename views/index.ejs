@@ -1,11 +1,164 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resetcss.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        table th,table td{
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+            
+            background-color: #b9b9b9;
+        }
+        tr:first-child td:first-child{
+            border-top-left-radius: 20px;
+        }
+        tr:last-child td:first-child{
+            border-bottom-left-radius: 20px;
+        }
+        tr:first-child td:last-child{
+            border-top-right-radius: 20px;
+        }
+        tr:last-child td:last-child{
+            border-bottom-right-radius: 20px;
+        }
+        th:first-child{
+            width: 800px;
+        }
+
+        .content {
+            height: 900px;
+        }
+
+        .content table {
+            width: 1300px;
+        }
+        .content a{
+            text-decoration: none;
+            color: #1c1c1c;
+        }
+        .content a:hover{
+            color: #5a5a5a;
+        }
+        .content img{
+            width: 200px;
+        }
+        .compare a{
+            border: 1px solid ;
+            padding: 5px 15px;
+            border-radius: 30px;
+            background-color: #337ab7; 
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="HeadLink">
+            <img src="./img/LOGO確定檔_工作區域 1.png" alt="">
+            <div>
+                <a href="">商品列表</a>
+                <a href="">比價車</a>
+                <a href="">討論區</a>
+            </div>
+        </div>
+        <div class="HeadLogin">
+            <a href="">登入</a>
+        </div>
+    </header>
+    <div class="content">
+        <table>
+            <tr>
+                <td colspan="4">熱門話題</td>
+            </tr>
+            <tr>
+                <th>主題</th>
+                <th>發表人</th>
+                <th>觀看</th>
+                <th>最後發表時間</th>
+            </tr>
+            <tr>
+                <td><a href="">[cpu]Intel Core i7-11700KF搭載BIOSTAR Z590GTA超頻實測</a></td>
+                <td>windwithme</td>
+                <td>1755</td>
+                <td>2021-09-22 09:00</td>
+            </tr>
+            <tr>
+                <td><a href="">[顯示卡]顯示卡使用率</a></td>
+                <td>a22279911</td>
+                <td>530</td>
+                <td>2021-09-22 10:00</td>
+            </tr>
+        </table>
+        <div>
+            <br>
+            <table>
+                <tr>
+                    <td colspan="5">最新商品</td>
+                </tr>
+                <tr>
+                    <td><img src="./img/Intel Core i5-11400.jpg" alt=""></td>
+                    <td><img src="./img/Intel Core i7-11700.jpg" alt=""></td>
+                    <td><img src="./img/EVGA RTX3080TI FTW3 Ultra.png" alt=""></td>
+                    <td><img src="./img/MSI RTX3080TI GAMING X TRIO 12G.jpg" alt=""></td>
+                    <td><img src="./img/GIGABYTE RTX3080TI GAMING OC 12G.jfif" alt=""></td>
+                </tr>
+                <tr>
+                    <td><a href="">Intel Core i5-11400</a></td>
+                    <td><a href="">Core i7-11700</a></td>
+                    <td><a href="">EVGA RTX3080TI FTW3 Ultra</a></td>
+                    <td><a href="">MSI RTX3080TI GAMING X TRIO 12G</a></td>
+                    <td><a href="">GIGABYTE RTX3080TI GAMING OC 12G</a></td>
+                </tr>
+
+            </table>
+        </div>
+        <div>
+            <br>
+            <table>
+                <tr>
+                    <td colspan="6">熱門比較</td>
+                </tr>
+                <tr>
+                    <td><img src="./img/Intel Core i5-11400.jpg" alt=""></td>
+                    <td rowspan="2"><img src="./img/白色vs_工作區域 1.png" alt="" style="width: 100px;"><br></td>
+                    <td><img src="./img/Intel Core i7-11700.jpg" alt=""></td>
+                    <td><img src="./img/GIGABYTE RTX3080TI GAMING OC 12G.jfif" alt=""></td>
+                    <td rowspan="2"><img src="./img/白色vs_工作區域 1.png" alt="" style="width:100px"></td>
+                    <td><img src="./img/MSI RTX3080TI GAMING X TRIO 12G.jpg" alt=""></td>
+                </tr>
+                <tr>
+                    <td>Intel Core i5-11400</td>
+                    <td>Intel Core i7-11700</td>
+                    <td>GIGABYTE RTX3080TI GAMING OC 12G</td>
+                    <td>MSI RTX3080TI GAMING X TRIO 12G</td>
+                </tr>
+                <tr>
+                    <td class="compare" colspan="3"><a href="" >比較</a></td>
+                    <td class="compare" colspan="3"><a href="" >比較</a></td>
+                    
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="blank">
+        <footer>
+            <p>本站所刊載之圖文內容等版權皆屬原廠商所有，非經同意請勿轉載。</p>
+            <p>T e n C l o u d 比 價 網</p>
+        </footer>
+    </div>
+    <script src="./js/slide.js"></script>
+</body>
+
 </html>
