@@ -6,12 +6,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db = require('./db/db')
 
+<<<<<<< HEAD
 // 定義頁面
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
 var memberRouter = require('./routes/member');
 var memberdataRouter = require('./routes/memberdata');
 var chatRouter = require('./routes/chat');
+=======
+var indexRouter = require('./routes/index');
+>>>>>>> 99f9de47caf5198e1534552624ffa851f1082dc9
 
 var app = express();
 app.use(bodyParser.json());
@@ -24,6 +28,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+app.use('/bootstrap-icons', express.static(__dirname + '/node_modules/bootstrap-icons/font'));
 app.use(express.static(path.join(__dirname, 'public')));
 // 頁面設置
 app.use('/login', loginRouter);
@@ -46,6 +54,10 @@ app.post('/login')
 
 
 
+<<<<<<< HEAD
+=======
+app.use('/', indexRouter);
+>>>>>>> 99f9de47caf5198e1534552624ffa851f1082dc9
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

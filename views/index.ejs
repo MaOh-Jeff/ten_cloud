@@ -1,11 +1,179 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="./css/resetcss.css">
+    <link rel="stylesheet" href="./css/home_page.css">
+    <link rel="stylesheet" href="./css/layout.css">
+</head>
+
+<body>
+    <header>
+        <div class="HeadLink">
+            <div>
+                <a href="/"><img src="./img/LOGO確定檔_工作區域 1.png" alt=""></a>
+            </div>
+            <div>
+                <a href=""><i class="bi bi-card-list"></i> 商品列表</a>
+                <a href=""><i class="bi bi-cart-check"></i> 比價車</a>
+                <a href=""><i class="bi bi-globe2"></i> 討論區</a>
+            </div>
+        </div>
+        <div class="HeadLogin">
+            <a href="">登入</a>
+        </div>
+    </header>
+    <div style="height: 80px;"></div>
+    <div class="container-fluid carouselBackgroud">
+        <div id="recommendedProductCarousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+            <ol class="carousel-indicators">
+                <li data-target="#recommendedProductCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="1"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="2"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="3"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <!-- <div class="carousel-item active"> -->
+                <% for(i=0; i<recommended_list.length; i++){ %>
+                    <% if(i==0){ %>
+                <div class="carousel-item active">
+                    <% } else{ %>
+                <div class="carousel-item">
+                    <% } %>
+                    <div class="container">
+                        <div class="row row-cols-3">
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i++].product_id %>" hidden>
+                            </div>
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i++].product_id %>" hidden>
+                            </div>
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i].product_id %>" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <a class="carousel-control-prev" href="#recommendedProductCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recommendedProductCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br><br>
+    <div class="content">
+        <div>
+            <table>
+                <tr>
+                    <th class="table_title" colspan="4">熱門話題</th>
+                </tr>
+                <tr>
+                    <th class="table_sub_title">看板</th>
+                    <th class="table_sub_title">版主</th>
+                    <th class="table_sub_title">觀看次數</th>
+                    <th class="table_sub_title">發表時間</th>
+                </tr>
+                <% forum_list.forEach((row, key) => { %>
+                    <tr>
+                        <td class="td_border">
+                            <img class="kanban_img" src="./img/icon/burning.png" alt="">
+                            <a href=""><%= row.title %></a>
+                        </td>
+                        <td class="td_border"><%= row.nickname %></td>
+                        <td class="td_border"><%= row.views %></td>
+                        <td class="td_border"><%= moment(row.bdate).format("yyyy-MM-DD HH:mm:ss") %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table>
+                <tr>
+                    <th class="table_title" colspan="5">最新商品</th>
+                </tr>
+                <tr>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border td_product_backgroud"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                <% }) %>
+                </tr>
+                <tr>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border"><a href=""><%= row.product_name %></a></td>
+                <% }) %>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table>
+                <tr>
+                    <th class="table_title" colspan="6">熱門比較</th>
+                </tr>
+                <tr class="tr_compare_border">
+                    <% compare_list.forEach((row, key) => { %>
+                        <% if(key%2==0){ %>
+                        <td class="td_product_backgroud td_border_left"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <td class="td_product_backgroud"><img class="product_img" src="./img/icon/vs.png" alt=""></td>
+                        <% }else{ %>
+                        <td class="td_product_backgroud td_border_right"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <% } %>
+                    <% }) %>
+                </tr>
+                <tr>
+                    <% compare_list.forEach((row, key) => { %>
+                        <td><%= row.product_name %></td>
+                        <% if(key%2==0){ %>
+                        <td class="compare"><a href="" >比較</a></td>
+                        <% } %>
+                    <% }) %>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="blank">
+        <footer>
+            <p>本站所刊載之圖文內容等版權皆屬原廠商所有，非經同意請勿轉載。</p>
+            <p>T e n C l o u d 比 價 網</p>
+        </footer>
+    </div>
+    <script src="./js/slide.js"></script>
+
+    
+</body>
+
 </html>

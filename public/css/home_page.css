@@ -1,0 +1,149 @@
+/* table */
+table {
+    margin: 30px auto;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table th{
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px;
+    line-height: inherit;
+    
+    /* background-color: #b9b9b9; */
+    background-color: #9bb1b4;
+}
+table td{
+    /* border: 1px solid black; */
+    text-align: center;
+    padding: 10px;
+    line-height: inherit;
+    
+    /* background-color: #b9b9b9; */
+    background-color: #9bb1b4;
+}
+.td_border{
+    border: 1px solid black;
+}
+.td_border_right{
+    border-right: 1px solid black;
+}
+.td_border_left{
+    border-left: 1px solid black;
+}
+.td_product_backgroud{
+    background-color: #ffffff;
+}
+tr:first-child th:first-child{
+    border-top-left-radius: 20px;
+}
+tr:last-child td:first-child{
+    border-bottom-left-radius: 20px;
+}
+tr:first-child th:last-child{
+    border-top-right-radius: 20px;
+}
+tr:last-child td:last-child{
+    border-bottom-right-radius: 20px;
+}
+th:first-child{
+    width: 800px;
+}
+
+/* content */
+.content {
+    height: auto;
+}
+
+.content table {
+    /* width: 85%; */
+    width: 1300px;
+}
+.content a{
+    text-decoration: none;
+    color: #1c1c1c;
+}
+.content a:hover{
+    color: #5a5a5a;
+}
+.compare a{
+    border: 1px solid ;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background-color: #337ab7; 
+    color: white;
+}
+/* 
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+*/
+
+/* carousel */
+.carouselBackgroud{
+    /* background-color: rgb(120, 120, 120); */
+}
+
+.carousel_img{
+    height: 200px;
+}
+
+.carousel-item{
+    position: relative;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon{
+    width: 15%;
+    height: 15%;
+    background-color: rgb(31, 31, 71);
+}
+
+.carousel_font{
+    height: 1.2rem;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* carousel icon */
+
+.hot_tag{
+    text-align: right;
+    transform: translate(0%, 50%);
+    z-index: 2;
+}
+.hot_tag>img{
+    width: 30%;
+    height: 100%;
+}
+
+/* 
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+*/
+
+/* table 用 */
+.table_title{
+    font-weight: 800;
+    font-size: x-large;
+}
+.table_sub_title{
+    font-weight: 800;
+    font-size: large ;
+}
+.table_content{
+    font-size: 600;
+}
+
+/* hot kanban */
+.kanban_img{
+    width: 2%;
+    height: 2%;
+}
+/* product */
+.product_img{
+    width: 200px;
+}
