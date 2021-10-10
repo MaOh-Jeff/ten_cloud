@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" href="./stylesheets/resetcss.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
+    <script src="./javascripts/jquery.min.js"></script>
+
+    <style>
+        .btn:active:focus,
+        .btn:active.focus,
+        .btn.active:focus,
+        .btn.active.focus,
+        .btn:focus,
+        .btn.foucs {
+            box-shadow: none;
+            outline: none;
+            color: #b3b3b3;
+        }
+
+        .btn {
+            color: black;
+        }
+
+        .btn:hover {
+            color: #b3b3b3;
+        }
+        .nav-link.active,.nav-link.active:focus{
+            color: #b3b3b3;
+        }
+        #v-tab {
+            width: 10vw;
+            margin: 90px 20px 0 0;
+        }
+
+        .nav-link {
+            font-size: 1vw;
+        }
+
+        .row {
+            width: 88vw;
+            margin-top: 74px;
+            z-index: -1;
+        }
+
+        a.page-link {
+            color: black;
+            border-radius: 7px;
+            font-size: 1.5vw;
+            margin: 0 12px 0 12px;
+        }
+
+        a.page-link:hover {
+            background-color: inherit;
+            border: 0;
+            color: #b3b3b3;
+
+        }
+
+        a.page-link:focus {
+            background-color: #b3b3b3;
+            box-shadow: none;
+            color: white;
+            border-radius: 7px;
+
+        }
+
+        a.page-color:focus {
+            background-color: inherit;
+        }
+
+        a.page-color img {
+            width: 1vw;
+        }
+
+        a.page-link:active {
+            background-color: inherit;
+            border: 0;
+            color: #b3b3b3;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .card-body button {
+            border-radius: 30px;
+            color: white;
+            background-color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <%- include("./shared/header.ejs") %>
+
+
+    <div class="d-flex align-items-start  ">
+        <!-- 商品導覽列 -->
+        <div class="nav flex-column " id="v-tab">
+            <% for(var i=0; i<prodListId.length; i++) { %>
+                <% if (i==0) { %>
+                    <button class="nav-link btn btn-light btn-sm active" type="button"  data-bs-toggle="tab"
+                    id="<%= prodListId[i] %>" data-bs-target="<%= prodListTarget[i] %>" ><%= prodList[i] %></button>
+                <% } else { %>
+                    <button class="nav-link btn btn-light btn-sm" type="button"  data-bs-toggle="tab"
+                    id="<%= prodListId[i] %>" data-bs-target="<%= prodListTarget[i] %>" ><%= prodList[i] %></button>
+                <% } %>
+            <% } %>
+        </div>
+        <!-- <div class="nav flex-column " id="v-tab">
+            <button class="nav-link btn btn-light btn-sm" id="v-allItems-tab" data-bs-toggle="tab"
+                data-bs-target="#v-allItems" type="button">所有商品</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-motherboard-tab" data-bs-toggle="tab"
+                data-bs-target="#v-motherboard" type="button">主機板</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-Memory-tab" data-bs-toggle="tab"
+                data-bs-target="#v-Memory" type="button">記憶體</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-PowerSupplier-tab" data-bs-toggle="tab"
+                data-bs-target="#v-PowerSupplier" type="button">電源供應器</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-graphicsCard-tab" data-bs-toggle="tab"
+                data-bs-target="#v-graphicsCard" type="button">顯示卡</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-CPU-tab" data-bs-toggle="tab" data-bs-target="#v-CPU"
+                type="button">CPU</button>
+        </div> -->
+
+        <!-- 商品內容 -->
+        <div class="tab-content  " id="v-tabContent">
+            <!-- 所有商品頁面 -->
+            <div class="tab-pane active " id="v-allItems">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodName.length ; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodId[i] %>">
+                                        <img src="<%= prodImg[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodName[i] %></span> <hr />
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodId[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- 主機板頁面 -->
+            <div class="tab-pane " id="v-motherboard">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodNameMotherboard.length; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodIdMotherboard[i] %>">
+                                        <img src="<%= prodImgMotherboard[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodNameMotherboard[i] %></span> <hr />
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMotherboard[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        
+
+                    </div>
+                </div>
+            </div>
+            <!-- 記憶體頁面 -->
+            <div class="tab-pane " id="v-Memory">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodNameMemory.length; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodIdMemory[i] %>">
+                                        <img src="<%= prodImgMemory[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodNameMemory[i] %></span> <hr />
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMemory[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- 電源供應器頁面 -->
+            <div class="tab-pane " id="v-PowerSupplier">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodNamePowerSupplier.length; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodIdPowerSupplier[i] %>">
+                                        <img src="<%= prodImgPowerSupplier[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodNamePowerSupplier[i] %></span> <hr />
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdPowerSupplier[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- 顯示卡頁面 -->
+            <div class="tab-pane " id="v-graphicsCard">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodNameGraphicsCard.length; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodIdGraphicsCard[i] %>">
+                                        <img src="<%= prodImgGraphicsCard[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodNameGraphicsCard[i] %></span> <hr />
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdGraphicsCard[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- CPU頁面 -->
+            <div class="tab-pane " id="v-CPU">
+                <div class="container ">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5  ">
+                        <% for(var i=0; i<prodNameCPU.length; i++) { %>
+                            <div class="col">
+                                <div class="card mt-3 " style="width: 20rem; height:20rem;">
+                                    <a href="./productDetail/<%= prodIdCPU[i] %>">
+                                        <img src="<%= prodImgCPU[i] %>" class="card-img-top img-fluid "
+                                            alt="..."  style="width:400px;height:200px;">
+                                    </a>
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <span class="card-title small "><%= prodNameCPU[i] %></span> <hr/>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdCPU[i] %>">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分頁 -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination  justify-content-center m-4">
+            <li class="page-item">
+                <a class="page-link border-0 page-color" href="##" aria-label="Previous">
+                    <img src="./img/chevron-left.svg" alt="chevron-left">
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link border-0 " href="##">1</a></li>
+            <li class="page-item"><a class="page-link border-0 " href="##">2</a></li>
+            <li class="page-item"><a class="page-link border-0 " href="##">3</a></li>
+            <li class="page-item">
+                <a class="page-link border-0 page-color" href="##" aria-label="Next">
+                    <img src="./img/three-dots.svg" alt="chevron-right">
+                </a>
+            </li>
+            <li class="page-item">
+                <a class="page-link border-0 page-color " href="##" aria-label="Next">
+                    <img src="./img/chevron-right.svg" alt="chevron-right">
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- footer -->
+    <%- include("./shared/footer.ejs") %>
+    
+
+    <script src="./javascripts/slide.js"></script>
+    <script src="./javascripts/footerPosition.js"></script>
+    <script src="./javascripts/bootstrap.bundle.min.js"></script>
+    <script src="./javascripts/bootstrap.bundle.min.js.map"></script>
+
+    
+    
+    <script>
+        
+        $("button.prod").click(function(){
+            var API="http://localhost:3001/product/parity"
+            var payload = { prodId:this.dataset.id };
+            $.post(API,payload,function(data,status){
+                alert(data);
+            })
+        })
+    </script>
+</body>
+
+</html>

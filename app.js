@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+<<<<<<< HEAD
 var db = require('./db/db')
 
 <<<<<<< HEAD
@@ -16,9 +17,32 @@ var chatRouter = require('./routes/chat');
 =======
 var indexRouter = require('./routes/index');
 >>>>>>> 99f9de47caf5198e1534552624ffa851f1082dc9
+=======
+var session = require('express-session');
+
+var productRouter = require('./routes/product');
+var parityRouter = require('./routes/parity');
+var productDetailRouter = require('./routes/productDetail');
+>>>>>>> e89399624d4fcef6c1d022c4b5ec07fadcf1b45e
 
 var app = express();
 app.use(bodyParser.json());
+
+ // session設定
+ app.use(
+  session({
+  secret: 'fhegrgresdfaewef',
+  resave: true,
+  saveUninitialized: true,
+  // cookie: {
+  //   path: ,
+  //   httpOnly: false,
+  //   secure: false,
+  //   maxAge: 
+  // }
+  })
+);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,12 +76,21 @@ app.post('/add', function(req, res){
 
 app.post('/login')
 
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
 =======
 app.use('/', indexRouter);
 >>>>>>> 99f9de47caf5198e1534552624ffa851f1082dc9
+=======
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+app.use('/product', productRouter);
+app.use('/parity', parityRouter);
+app.use('/productDetail', productDetailRouter);
+
+>>>>>>> e89399624d4fcef6c1d022c4b5ec07fadcf1b45e
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

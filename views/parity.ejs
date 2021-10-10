@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parity</title>
+    <link rel="stylesheet" href="./stylesheets/resetcss.css">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
+    <script src="./javascripts/jquery.min.js"></script>
+
+    <style>
+        .btn:active:focus,
+        .btn:active.focus,
+        .btn.active:focus,
+        .btn.active.focus,
+        .btn:focus,
+        .btn.foucs {
+            box-shadow: none;
+            outline: none;
+            color: #b3b3b3;
+        }
+
+        .btn {
+            color: black;
+        }
+
+        .btn:hover {
+            color: #b3b3b3;
+        }
+        .nav-link.active,.nav-link.active:focus{
+            color: #b3b3b3;
+        }
+        #v-tab {
+            width: 10vw;
+            margin: 90px 20px 0 0;
+        }
+
+        .nav-link {
+            font-size: 1vw;
+        }
+
+        .row {
+            width: 88vw;
+            margin-top: 74px;
+            z-index: -1;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        .table {
+            margin-top: 110px;
+            word-break: break-all;
+            display: table;
+            table-layout:fixed;
+        }
+
+        .table img {
+            width: 10vw;
+            height: 10vw;
+        }
+        table th{
+            width:15vw;
+        }
+        
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 導覽列 -->
+    <%- include("./shared/header.ejs") %>
+
+
+    <div class="d-flex align-items-start  ">
+        <!-- 商品導覽列 -->
+        <div class="nav flex-column " id="v-tab">
+            <% for(var i=0; i<prodListId.length; i++) { %>
+                <% if(i== tempNavbar  ){ %>
+                    <button class="nav-link btn  btn-light btn-sm active" type="button" data-bs-toggle="tab"
+                    id="<%= prodListId[i] %>" data-bs-target="<%= prodListTarget[i] %>">
+                    <%= prodList[i] %>
+                </button>
+                <% } else {%>
+                    <button class="nav-link btn  btn-light btn-sm " type="button" data-bs-toggle="tab"
+                        id="<%= prodListId[i] %>" data-bs-target="<%= prodListTarget[i] %>">
+                        <%= prodList[i] %>
+                    </button>
+                <% } %> 
+            <% } %>
+        </div>
+        <!-- <div class="nav flex-column " id="v-tab">
+            <button class="nav-link btn btn-light btn-sm" id="v-allItems-tab" data-bs-toggle="tab"
+                data-bs-target="#v-allItems" type="button">所有商品</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-motherboard-tab" data-bs-toggle="tab"
+                data-bs-target="#v-motherboard" type="button">主機板</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-Memory-tab" data-bs-toggle="tab"
+                data-bs-target="#v-Memory" type="button">記憶體</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-PowerSupplier-tab" data-bs-toggle="tab"
+                data-bs-target="#v-PowerSupplier" type="button">電源供應器</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-graphicsCard-tab" data-bs-toggle="tab"
+                data-bs-target="#v-graphicsCard" type="button">顯示卡</button>
+            <button class="nav-link btn btn-light btn-sm" id="v-CPU-tab" data-bs-toggle="tab" data-bs-target="#v-CPU"
+                type="button">CPU</button>
+        </div> -->
+
+        <!-- 商品內容 -->
+        <div class="tab-content  " id="v-tabContent">
+               
+            <!-- 主機板頁面 -->
+            <div class="tab-pane <% if( tempNavbar==0) { %> active <% } %> "  id="v-motherboard">
+                <div class="container ">
+                    <% if( prodIdMotherboard.length != 0 ){ %>
+                        <table class="table table-bordered text-center table-hover">
+                            <thead style="background-color: #e8e8e8;">
+                                <tr>
+                                    <th scope="col" style="width:7vw;" ><%= parityMotherboard[0] %></th>
+                                    <% for(var k=0; k<prodMotherboard.length; k++) { %>
+                                        <th scope="col"><%= prodMotherboard[k][0] %></th>
+                                    <% } %>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=0; i<parityMotherboard.length ; i++) { %>
+                                        <% if( i!=0 ) {%>
+                                            <tr>
+                                        <% } %> 
+                                        <% for(var k=0; k<prodMotherboard.length +1; k++) { %>
+                                            <% if( k==0 && i!=0 ) {%>
+                                                <th scope="row"><%= parityMotherboard[i] %></th>
+                                            <% } %> 
+                                            <% if(k>0 && i>0) {%>
+                                                <% if(i==1) {%>
+                                                    <td> <img src="<%= prodMotherboard[k-1][i] %>" alt="...">
+                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMotherboard[k-1] %>" data-id="<%= prodIdMotherboard[k-1] %>" >X</button></td>
+                                                <% } else{ %>  
+                                                    <td><%- prodMotherboard[k-1][i] %></td>
+                                                <% } %> 
+                                            <% } %>
+                                        <% } %>   
+                                        <% if( i!=0 ) {%>
+                                            </tr>
+                                        <% } %>  
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+            <!-- 記憶體頁面 -->
+            <div class="tab-pane <% if( tempNavbar==1) { %> active <% } %> " id="v-Memory">
+                <div class="container ">
+                    <% if( prodIdMemory.length != 0 ){ %>
+                        <table class="table table-bordered text-center table-hover">
+                            <thead style="background-color: #e8e8e8;">
+                                <tr>
+                                    <th scope="col" style="width:7vw;" ><%= parityMemory[0] %></th>
+                                    <% for(var k=0; k<prodMemory.length; k++) { %>
+                                        <th scope="col"><%= prodMemory[k][0] %></th>
+                                    <% } %>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=0; i<parityMemory.length ; i++) { %>
+                                        <% if( i!=0 ) {%>
+                                            <tr>
+                                        <% } %> 
+                                        <% for(var k=0; k<prodMemory.length +1; k++) { %>
+                                            <% if( k==0 && i!=0 ) {%>
+                                                <th scope="row"><%= parityMemory[i] %></th>
+                                            <% } %> 
+                                            <% if(k>0 && i>0) {%>
+                                                <% if(i==1) {%>
+                                                    <td> <img src="<%= prodMemory[k-1][i] %>" alt="...">
+                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMemory[k-1] %>" data-id="<%= prodIdMemory[k-1] %>" >X</button></td>
+                                                <% } else{ %>  
+                                                    <td><%- prodMemory[k-1][i] %></td>
+                                                <% } %> 
+                                            <% } %>
+                                        <% } %>   
+                                        <% if( i!=0 ) {%>
+                                            </tr>
+                                        <% } %>  
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+            <!-- 電源供應器頁面 -->
+            <div class="tab-pane <% if( tempNavbar==2) { %> active <% } %> " id="v-PowerSupplier">
+                <div class="container ">
+                    <% if( prodIdPowerSupplier.length != 0 ){ %>
+                        <table class="table table-bordered text-center table-hover">
+                            <thead style="background-color: #e8e8e8;">
+                                <tr>
+                                    <th scope="col" style="width:7vw;" ><%= parityPowerSupplier[0] %></th>
+                                    <% for(var k=0; k<prodPowerSupplier.length; k++) { %>
+                                        <th scope="col"><%= prodPowerSupplier[k][0] %></th>
+                                    <% } %>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=0; i<parityPowerSupplier.length ; i++) { %>
+                                        <% if( i!=0 ) {%>
+                                            <tr>
+                                        <% } %> 
+                                        <% for(var k=0; k<prodPowerSupplier.length +1; k++) { %>
+                                            <% if( k==0 && i!=0 ) {%>
+                                                <th scope="row"><%= parityPowerSupplier[i] %></th>
+                                            <% } %> 
+                                            <% if(k>0 && i>0) {%>
+                                                <% if(i==1) {%>
+                                                    <td> <img src="<%= prodPowerSupplier[k-1][i] %>" alt="...">
+                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdPowerSupplier[k-1] %>" data-id="<%= prodIdPowerSupplier[k-1] %>" >X</button></td>
+                                                <% } else{ %>  
+                                                    <td><%- prodPowerSupplier[k-1][i] %></td>
+                                                <% } %> 
+                                            <% } %>
+                                        <% } %>   
+                                        <% if( i!=0 ) {%>
+                                            </tr>
+                                        <% } %>  
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+            <!-- 顯示卡頁面 -->
+            <div class="tab-pane <% if( tempNavbar==3) { %> active <% } %> " id="v-graphicsCard">
+                <div class="container ">
+                    <% if( prodIdGraphicsCard.length != 0 ){ %>
+                        <table class="table table-bordered text-center table-hover">
+                            <thead style="background-color: #e8e8e8;">
+                                <tr>
+                                    <th scope="col" style="width:7vw;" ><%= parityGraphicsCard[0] %></th>
+                                    <% for(var k=0; k<prodGraphicsCard.length; k++) { %>
+                                        <th scope="col"><%= prodGraphicsCard[k][0] %></th>
+                                    <% } %>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=0; i<parityGraphicsCard.length ; i++) { %>
+                                        <% if( i!=0 ) {%>
+                                            <tr>
+                                        <% } %> 
+                                        <% for(var k=0; k<prodGraphicsCard.length +1; k++) { %>
+                                            <% if( k==0 && i!=0 ) {%>
+                                                <th scope="row"><%= parityGraphicsCard[i] %></th>
+                                            <% } %> 
+                                            <% if(k>0 && i>0) {%>
+                                                <% if(i==1) {%>
+                                                    <td> <img src="<%= prodGraphicsCard[k-1][i] %>" alt="...">
+                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdGraphicsCard[k-1] %>" data-id="<%= prodIdGraphicsCard[k-1] %>" >X</button></td>
+                                                <% } else{ %>  
+                                                    <td><%- prodGraphicsCard[k-1][i] %></td>
+                                                <% } %> 
+                                            <% } %>
+                                        <% } %>   
+                                        <% if( i!=0 ) {%>
+                                            </tr>
+                                        <% } %>  
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+            <!-- CPU頁面 -->
+            <div class="tab-pane <% if( tempNavbar==4) { %> active <% } %> " id="v-CPU">
+                <div class="container ">
+                    <% if( prodIdCPU.length != 0 ){ %>
+                        <table class="table table-bordered text-center table-hover">
+                            <thead style="background-color: #e8e8e8;">
+                                <tr>
+                                    <th scope="col" style="width:7vw;" ><%= parityCPU[0] %></th>
+                                    <% for(var k=0; k<prodCPU.length; k++) { %>
+                                        <th scope="col"><%= prodCPU[k][0] %></th>
+                                    <% } %>     
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <% for(var i=0; i<parityCPU.length ; i++) { %>
+                                        <% if( i!=0 ) {%>
+                                            <tr>
+                                        <% } %> 
+                                        <% for(var k=0; k<prodCPU.length +1; k++) { %>
+                                            <% if( k==0 && i!=0 ) {%>
+                                                <th scope="row"><%= parityCPU[i] %></th>
+                                            <% } %> 
+                                            <% if(k>0 && i>0) {%>
+                                                <% if(i==1) {%>
+                                                    <td> <img src="<%= prodCPU[k-1][i] %>" alt="...">
+                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdCPU[k-1] %>" data-id="<%= prodIdCPU[k-1] %>" >X</button></td>
+                                                <% } else{ %>  
+                                                    <td><%- prodCPU[k-1][i] %></td>
+                                                <% } %> 
+                                            <% } %>
+                                        <% } %>   
+                                        <% if( i!=0 ) {%>
+                                            </tr>
+                                        <% } %>  
+                                    <% } %>
+                            </tbody>
+                        </table>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- footer -->
+     <%- include("./shared/footer.ejs") %>
+
+    <script src="./javascripts/slide.js"></script>
+    <script src="./javascripts/footerPosition.js"></script>
+    <script src="./javascripts/bootstrap.bundle.min.js"></script>
+    <script src="./javascripts/bootstrap.bundle.min.js.map"></script>
+
+    <script>
+        
+
+                
+        // 按鈕點擊ajax刪除商品
+        $("button.prod").click(function(){
+            // 找比價車最後導覽列位置
+            var tabEl = document.querySelectorAll('button[data-bs-toggle="tab"]');
+            var tempNavbar = 0;
+            tabEl.forEach((items,index)=>{
+
+                if( $( tabEl[index]).hasClass("active")== true ){
+                    tempNavbar = index ;
+                    console.log(tempNavbar);
+                }
+
+                // alert( index+":" + $( tabEl[index]).hasClass("active")  );
+            })
+
+            var API="http://localhost:3001/parity/delete"
+            var payload = { prodId:this.dataset.id, tempNavbar:tempNavbar };
+            $.post(API,payload,function(data,status){
+
+                location.reload();
+                alert(data);
+                        
+            })
+
+                    
+        })
+                
+                // if( $( "#"+ tempClass.id ).hasClass("active") != $( '#v-motherboard-tab' ).hasClass("active")  ){
+                //     // 加入最後分頁位置class
+                //     $("#"+ tempClass.id ).addClass('active');
+                //     // 移除原本的active
+                //     $('#v-motherboard-tab').removeClass("active");
+                    
+                // }
+
+
+        // 更改刪除按鈕位置
+        if ( '<%=session%>' && '<%=session%>' != "" ){
+                    
+            // 頁面載入執行
+            $(document).ready(function (event){
+                var temp = document.querySelectorAll( '.prod' );
+                for(var i=0;i< temp.length ;i++){
+                    temp[i].style = " margin-bottom: 8vw; float:right; ";
+                }
+                // console.log(event);
+            });
+
+                    
+                    
+        }
+                    
+                    
+       
+    </script>
+</body>
+
+</html>
