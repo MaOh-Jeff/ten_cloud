@@ -1,0 +1,73 @@
+/* header */
+header{
+    position: fixed;
+    padding: 0.2% 3% 0.2% 0%;
+    background-color: #c5c5c5;
+    height: auto;
+    width: 100%;
+    transition: 0.4s ease-in-out;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+header img{
+    width: 250px;   
+}
+.headUP header{
+    top: -90px;
+}
+
+/* header navbar */
+.HeadLink{
+    display: flex;
+    align-items: center;
+}
+.HeadLink a{
+    font-size: 2rem;
+    color: #000;
+    text-decoration: none;
+    padding: 10px;
+    padding-left: 50px;
+    border-width: 2px;
+    border-radius: 10px;
+}
+.HeadLink a:hover{
+    color: #ffffff;
+}
+
+/* header Login button */
+.HeadLogin a{
+    font-size: 2rem;
+    color: rgb(207, 196, 196);
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    background-color: #7e7e7e;
+}
+.HeadLogin a:hover{
+    color: #404040;
+    background-color: #c9b7b7;
+    transition: 0.3s ;
+}
+
+/* footer */
+#blank{
+    margin: 0;
+    padding: 0;
+}
+
+footer{
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    /* border-top: 1px solid ; */
+    background-color: #c5c5c5;
+    line-height: 2;
+    letter-spacing: 3px;
+    font-family:Microsoft JhengHei;
+}

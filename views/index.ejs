@@ -4,150 +4,163 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/resetcss.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <style>
-        table {
-            margin-left: auto;
-            margin-right: auto;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        table th,table td{
-            border: 1px solid black;
-            text-align: center;
-            padding: 10px;
-            
-            background-color: #b9b9b9;
-        }
-        tr:first-child td:first-child{
-            border-top-left-radius: 20px;
-        }
-        tr:last-child td:first-child{
-            border-bottom-left-radius: 20px;
-        }
-        tr:first-child td:last-child{
-            border-top-right-radius: 20px;
-        }
-        tr:last-child td:last-child{
-            border-bottom-right-radius: 20px;
-        }
-        th:first-child{
-            width: 800px;
-        }
-
-        .content {
-            height: 900px;
-        }
-
-        .content table {
-            width: 1300px;
-        }
-        .content a{
-            text-decoration: none;
-            color: #1c1c1c;
-        }
-        .content a:hover{
-            color: #5a5a5a;
-        }
-        .content img{
-            width: 200px;
-        }
-        .compare a{
-            border: 1px solid ;
-            padding: 5px 15px;
-            border-radius: 30px;
-            background-color: #337ab7; 
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/home_page.css">
+    <link rel="stylesheet" href="./css/layout.css">
 </head>
 
 <body>
     <header>
         <div class="HeadLink">
-            <img src="./img/LOGO確定檔_工作區域 1.png" alt="">
             <div>
-                <a href="">商品列表</a>
-                <a href="">比價車</a>
-                <a href="">討論區</a>
+                <a href="/"><img src="./img/LOGO確定檔_工作區域 1.png" alt=""></a>
+            </div>
+            <div>
+                <a href=""><i class="bi bi-card-list"></i> 商品列表</a>
+                <a href=""><i class="bi bi-cart-check"></i> 比價車</a>
+                <a href=""><i class="bi bi-globe2"></i> 討論區</a>
             </div>
         </div>
         <div class="HeadLogin">
             <a href="">登入</a>
         </div>
     </header>
+    <div style="height: 80px;"></div>
+    <div class="container-fluid carouselBackgroud">
+        <div id="recommendedProductCarousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+            <ol class="carousel-indicators">
+                <li data-target="#recommendedProductCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="1"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="2"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="3"></li>
+                <li data-target="#recommendedProductCarousel" data-slide-to="4"></li>
+            </ol>
+            <div class="carousel-inner">
+                <!-- <div class="carousel-item active"> -->
+                <% for(i=0; i<recommended_list.length; i++){ %>
+                    <% if(i==0){ %>
+                <div class="carousel-item active">
+                    <% } else{ %>
+                <div class="carousel-item">
+                    <% } %>
+                    <div class="container">
+                        <div class="row row-cols-3">
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i++].product_id %>" hidden>
+                            </div>
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i++].product_id %>" hidden>
+                            </div>
+                            <div class="row row-cols-1 single_product">
+                                <div class="col hot_tag">
+                                    <img src="./img/icon/hot_tag.png"alt="">
+                                </div>
+                                <div class="col">
+                                    <img src=<%= recommended_list[i].img_path %> class="carousel_img" alt="...">
+                                </div>
+                                <div class="col carousel_font"><%= recommended_list[i].product_name %></div>
+                                <input type="text" name="product_id" value="<%= recommended_list[i].product_id %>" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <a class="carousel-control-prev" href="#recommendedProductCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recommendedProductCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <br><br>
     <div class="content">
-        <table>
-            <tr>
-                <td colspan="4">熱門話題</td>
-            </tr>
-            <tr>
-                <th>主題</th>
-                <th>發表人</th>
-                <th>觀看</th>
-                <th>最後發表時間</th>
-            </tr>
-            <tr>
-                <td><a href="">[cpu]Intel Core i7-11700KF搭載BIOSTAR Z590GTA超頻實測</a></td>
-                <td>windwithme</td>
-                <td>1755</td>
-                <td>2021-09-22 09:00</td>
-            </tr>
-            <tr>
-                <td><a href="">[顯示卡]顯示卡使用率</a></td>
-                <td>a22279911</td>
-                <td>530</td>
-                <td>2021-09-22 10:00</td>
-            </tr>
-        </table>
         <div>
-            <br>
             <table>
                 <tr>
-                    <td colspan="5">最新商品</td>
+                    <th class="table_title" colspan="4">熱門話題</th>
                 </tr>
                 <tr>
-                    <td><img src="./img/Intel Core i5-11400.jpg" alt=""></td>
-                    <td><img src="./img/Intel Core i7-11700.jpg" alt=""></td>
-                    <td><img src="./img/EVGA RTX3080TI FTW3 Ultra.png" alt=""></td>
-                    <td><img src="./img/MSI RTX3080TI GAMING X TRIO 12G.jpg" alt=""></td>
-                    <td><img src="./img/GIGABYTE RTX3080TI GAMING OC 12G.jfif" alt=""></td>
+                    <th class="table_sub_title">看板</th>
+                    <th class="table_sub_title">版主</th>
+                    <th class="table_sub_title">觀看次數</th>
+                    <th class="table_sub_title">發表時間</th>
                 </tr>
-                <tr>
-                    <td><a href="">Intel Core i5-11400</a></td>
-                    <td><a href="">Core i7-11700</a></td>
-                    <td><a href="">EVGA RTX3080TI FTW3 Ultra</a></td>
-                    <td><a href="">MSI RTX3080TI GAMING X TRIO 12G</a></td>
-                    <td><a href="">GIGABYTE RTX3080TI GAMING OC 12G</a></td>
-                </tr>
-
+                <% forum_list.forEach((row, key) => { %>
+                    <tr>
+                        <td class="td_border">
+                            <img class="kanban_img" src="./img/icon/burning.png" alt="">
+                            <a href=""><%= row.title %></a>
+                        </td>
+                        <td class="td_border"><%= row.nickname %></td>
+                        <td class="td_border"><%= row.views %></td>
+                        <td class="td_border"><%= moment(row.bdate).format("yyyy-MM-DD HH:mm:ss") %></td>
+                    </tr>
+                <% }) %>
             </table>
         </div>
+        <br>
         <div>
-            <br>
             <table>
                 <tr>
-                    <td colspan="6">熱門比較</td>
+                    <th class="table_title" colspan="5">最新商品</th>
                 </tr>
                 <tr>
-                    <td><img src="./img/Intel Core i5-11400.jpg" alt=""></td>
-                    <td rowspan="2"><img src="./img/白色vs_工作區域 1.png" alt="" style="width: 100px;"><br></td>
-                    <td><img src="./img/Intel Core i7-11700.jpg" alt=""></td>
-                    <td><img src="./img/GIGABYTE RTX3080TI GAMING OC 12G.jfif" alt=""></td>
-                    <td rowspan="2"><img src="./img/白色vs_工作區域 1.png" alt="" style="width:100px"></td>
-                    <td><img src="./img/MSI RTX3080TI GAMING X TRIO 12G.jpg" alt=""></td>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border td_product_backgroud"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                <% }) %>
                 </tr>
                 <tr>
-                    <td>Intel Core i5-11400</td>
-                    <td>Intel Core i7-11700</td>
-                    <td>GIGABYTE RTX3080TI GAMING OC 12G</td>
-                    <td>MSI RTX3080TI GAMING X TRIO 12G</td>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border"><a href=""><%= row.product_name %></a></td>
+                <% }) %>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table>
+                <tr>
+                    <th class="table_title" colspan="6">熱門比較</th>
+                </tr>
+                <tr class="tr_compare_border">
+                    <% compare_list.forEach((row, key) => { %>
+                        <% if(key%2==0){ %>
+                        <td class="td_product_backgroud td_border_left"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <td class="td_product_backgroud"><img class="product_img" src="./img/icon/vs.png" alt=""></td>
+                        <% }else{ %>
+                        <td class="td_product_backgroud td_border_right"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <% } %>
+                    <% }) %>
                 </tr>
                 <tr>
-                    <td class="compare" colspan="3"><a href="" >比較</a></td>
-                    <td class="compare" colspan="3"><a href="" >比較</a></td>
-                    
+                    <% compare_list.forEach((row, key) => { %>
+                        <td><%= row.product_name %></td>
+                        <% if(key%2==0){ %>
+                        <td class="compare"><a href="" >比較</a></td>
+                        <% } %>
+                    <% }) %>
                 </tr>
             </table>
         </div>
@@ -159,6 +172,8 @@
         </footer>
     </div>
     <script src="./js/slide.js"></script>
+
+    
 </body>
 
 </html>
