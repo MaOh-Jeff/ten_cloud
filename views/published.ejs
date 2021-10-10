@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resetcss.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .HeadMember {
+            margin: 50px;
+        }
+
+        .HeadMember img {
+            width: 80px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .HeadMember a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .HeadMember li {
+            text-align: center;
+        }
+        .Member li {
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 15px;
+            margin-top: 2px;
+        }
+        .Member{
+            display: none;
+            height: 3px;
+        }
+        .HeadMember:hover .Member{
+            display: block;
+        }
+        .desing{
+            width: 800px;
+            height: 350px;
+        }
+        .desing a{
+            text-decoration: none;
+            font-size: 36px;
+            padding: 10px;
+            line-height: 80px;
+            text-align: center;
+            color: black;
+            border: 1px solid black;
+            border-radius: 50px;
+        }
+        .desing a:hover{
+            color: #9b9b9b;
+        }
+        .desing span{
+            font-size: 30px;
+            line-height: 50px;
+        }
+        
+        table {
+            margin-left:auto; 
+            margin-right:auto;
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 80%;
+        }
+    
+        th,td {
+            border: 2px solid #9b9b9b;
+            text-align: center;
+            padding: 20px;
+            background-color: #8e8e8e;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <%- include("./shared/header.ejs") %>
+    <div class="content">
+        <div class="Register">
+            <div class="desing">
+                <h1>推文紀錄</h1>  
+                <br>
+                <table class="">
+                    <tr>
+                        <th>文章標題</th>
+                    </tr> 
+                    <% for(var i=0; i<forum_id ; i++) { %>  
+                        <tr>
+                            <td><%= title[i] %> </td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include("./shared/footer.ejs") %>
+    <script src="./js/slide.js"></script>
+</body>
+
+</html>

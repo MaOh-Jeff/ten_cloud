@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resetcss.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .desing a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .desing a:hover {
+            color: #8b8b8b;
+        }
+
+        .desing {
+            height: 300px;
+        }
+        .HeadMember {
+            margin: 50px;
+        }
+
+        .HeadMember img {
+            width: 80px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .HeadMember a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .HeadMember li {
+            text-align: center;
+        }
+        .Member li {
+            border: 1px solid black;
+            border-radius: 50px;
+            padding: 15px;
+            margin-top: 2px;
+        }
+        .Member{
+            display: none;
+            height: 3px;
+        }
+        .HeadMember:hover .Member{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("./shared/header.ejs") %>
+    <div class="content">
+        <div class="Register">
+            <div class="desing">
+                <h1>登入</h1>
+                <form action="" id="form">
+                    <p><input type="text" name="account" placeholder="帳號"></p>
+                    <p><input type="password" name="password" placeholder="密碼"></p>
+                    <button type="button" id="submit"><a href="/member">登入</a></button>
+                    <br>
+                    <br>
+                    <a href="./signup">還沒有帳號嗎</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include("./shared/footer.ejs") %>
+    <script src="./js/slide.js"></script>
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script>
+        $('#submit').on('click', function () {
+            var data = $('#form').serializeArray()
+            JSONData = serializeToJSON(data)
+            console.log(JSONData)
+
+            $.ajax({
+                url: "/login",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSONData,
+
+                success: function (res) {
+                    var res = JSON.parse(res)
+                    if (res.errno === 1) {
+                        alert("登入成功!")
+                        location.herf = "/"
+                    } else if (res.errno === 0) {
+                        alert("登入失敗!")
+                    }
+                },
+                errno: function () {
+                    alert("系統錯誤!")
+                }
+            })
+        })
+
+        function serializeToJSON(data) {
+            var values = {};
+            for (index in data) {
+                values[data[index].name] = data[index].value;
+            }
+            return JSON.stringify(values)
+        }
+    </script>
+</body>
+
+</html>
