@@ -9,7 +9,21 @@
             <a href=""><i class="bi bi-globe2"></i> 討論區</a>
         </div>
     </div>
+    <% if(!session.user) { %>
     <div class="HeadLogin">
-        <a href="">登入</a>
+        <a href="/login">登入</a>
     </div>
+    <% }else { %>
+    <div class="HeadMember">
+        <ul>
+            <li>
+                <img src="./img/會員圖一_工作區域 1.png" alt="">
+                <ul class="Member">
+                    <li><a href="">會員專區</a></li>
+                    <li><a href="/logout">登出</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <% } %>
 </header>
