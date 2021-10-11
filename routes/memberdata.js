@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/db');
+var { Success, Error } = require('../response');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,7 +31,18 @@ router.post('/',function(req,res){
   var sql = 'call fsp_member_enable_toggle(?);'
   var data = [member_id]
   db.exec(sql,data,function(results, fields){
-      console.log(results);
+    var results = JSON.stringify(results[0]);
+    console.log(results);
+    if (results.includes('註銷成功') != false) {
+      res.send(
+        JSON.stringify(new Success('login success'))
+      )
+    }
+    else{
+      res.end(
+        JSON.stringify(new Error('login failed'))
+      )
+    }
   })
 })
 module.exports = router;

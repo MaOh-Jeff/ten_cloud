@@ -78,7 +78,7 @@
                 <br>
                 <a href="/altermemberdata">更改資料</a>
                 &nbsp&nbsp&nbsp
-                <a href="/logout" id="submit">註銷帳號</a>
+                <a id="submit">註銷帳號</a>
                 
             </div>
         </div>
@@ -92,6 +92,25 @@
             JSONData = serializeToJSON(data)
             console.log(JSONData)
 
+            $.ajax({
+                url: "/memberdata",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                data: JSONData,
+
+                success: function (res) {
+                    var res = JSON.parse(res)
+                    if (res.errno === 1) {
+                        location.href = "/logout"
+                        alert("註銷成功!")
+                    } else if (res.errno === 0) {
+                        alert("註銷失敗!")
+                    }
+                },
+                errno: function () {
+                    alert("系統錯誤!")
+                }
+            })
         })
 
         function serializeToJSON(data) {

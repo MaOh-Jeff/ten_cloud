@@ -17,6 +17,8 @@ var addRouter = require('./routes/add')
 var trackRouter = require('./routes/track');
 var publishedRouter = require('./routes/published')
 var altermemberdataRouter = require('./routes/altermemberdata');
+var forumRouter = require('./routes/forum');
+const e = require('express');
 
 var app = express();
 app.use(session({
@@ -32,7 +34,7 @@ app.use(session({
   // }
 }))
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   res.locals.session = req.session;
   next();
 });
@@ -53,18 +55,30 @@ app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/member', memberRouter);
 app.use('/memberdata', memberdataRouter);
-app.use('/add',addRouter);
-app.use('/track',trackRouter);
-app.use('/published',publishedRouter);
-app.use('/altermemberdata',altermemberdataRouter);
+app.use('/add', addRouter);
+app.use('/track', trackRouter);
+app.use('/published', publishedRouter);
+app.use('/altermemberdata', altermemberdataRouter);
+app.use('/forum', forumRouter);
 
-app.post('/add', function(req, res){
+app.post('/signup', function (req, res) {
   var body = req.body
   console.log(body);
-    var sql = `call fsp_member_add(?, ?, ?, ?, ?);`
-    var data = [body.account,body.password,body.full_name,body.nickname,body.email]
-    db.exec(sql, data, function(results, fields) {
-      console.log(results)
+  var sql = `call fsp_member_add(?, ?, ?, ?, ?);`
+  var data = [body.account, body.password, body.full_name, body.nickname, body.email]
+  db.exec(sql, data, function (results, fields) {
+    var message = JSON.stringify(results[0][0]);
+    console.log(message);
+    if (message.includes('註冊成功') != false) {
+      res.send(
+        JSON.stringify(new Success('login success'))
+      )
+    }
+    else{
+      res.end(
+        JSON.stringify(new Error('login failed'))
+      )
+    }
   })
 })
 
@@ -121,20 +135,20 @@ app.post('/login', function (req, res) {
 app.get('/logout', function (req, res) {
   delete req.session.user;
   res.redirect('/login');
-});     
+});
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  
+
   // render the error page
   res.status(err.status || 500);
   res.render('error');

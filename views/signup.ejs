@@ -11,60 +11,74 @@
 
 <body>
     <%- include("./shared/header.ejs") %>
-    <div class="content">
-        <div class="Register">
-            <div class="desing">
-                <h1>註冊</h1>
-                <form action="" id="form">
-                    <p><input type="text" name="account" placeholder="帳號"></p>
-                    <p><input type="password" name="password" placeholder="密碼"></p>
-                    <p><input type="password" placeholder="再次確認密碼"></p>
-                    <p><input type="text" name="full_name" placeholder="真實姓名"></p>
-                    <p><input type="text" name="nickname" placeholder="暱稱"></p>
-                    <p><input type="text" name="email" placeholder="信箱"></p>
-                    <button type="button" id="submit"><a href="/login" style="text-decoration: none;color: black;">註冊</a></button>
-                </form>
+        <div class="content">
+            <div class="Register">
+                <div class="desing">
+                    <h1>註冊</h1>
+                    <form action="" id="form">
+                        <p><input type="text" name="account" id="account" placeholder="帳號"></p>
+                        <p><input type="password" name="password" id="password" placeholder="密碼"></p>
+                        <p><input type="password" id="password" placeholder="再次確認密碼"></p>
+                        <p><input type="text" name="full_name" id="full_name" placeholder="真實姓名"></p>
+                        <p><input type="text" name="nickname" id="nickname" placeholder="暱稱"></p>
+                        <p><input type="text" name="email" id="email" placeholder="信箱"></p>
+                        <button type="button" id="submit">註冊</button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <%- include("./shared/footer.ejs") %>
-    
-    <script src="./js/slide.js"></script>
-    <script src="./js/jquery-3.4.1.js"></script>
-    <script>
-        $('#submit').on('click',function(){
-            var data = $('#form').serializeArray()
-            JSONData = serializeToJSON(data)
-            console.log(JSONData)
+        <%- include("./shared/footer.ejs") %>
 
-            $.ajax({
-                url:"/add",
-                type:"POST",
-                contentType:"application/json; charset=utf-8",
-                data: JSONData,
-                success: function(res){
-                    var res = JSON.parse(res)
-                    if(res.errno === 1){
-                        alert("註冊成功!")
-                    } else if(res.errno === 0){
-                        alert("註冊失敗!")
+            <script src="./js/slide.js"></script>
+            <script src="./js/footerPosition.js"></script>
+            <script src="./js/jquery-3.4.1.js"></script>
+            <script>
+                $('#submit').on('click', function () {
+                    if ($("#account").val() == "") {
+                        alert("你尚未填寫帳號");
+                    } else if ($("#password").val() == "") {
+                        alert("你尚未填寫密碼");
+                    } else if ($("#full_name").val() == "") {
+                        alert("你尚未填寫姓名");
+                    } else if ($("#nickname").val() == "") {
+                        alert("你尚未填寫暱稱");
+                    } else if ($("#email").val() == "") {
+                        alert("你尚未填寫信箱");
+                    } else {
+                        var data = $('#form').serializeArray()
+                        JSONData = serializeToJSON(data)
+                        console.log(JSONData)
+
+                        $.ajax({
+                            url: "/signup",
+                            type: "POST",
+                            contentType: "application/json; charset=utf-8",
+                            data: JSONData,
+                            success: function (res) {
+                                var res = JSON.parse(res)
+                                if (res.errno === 1) {
+                                    location.href = "/login"
+                                    alert("註冊成功!")
+                                } else if (res.errno === 0) {
+                                    alert("註冊失敗!")
+                                }
+                            },
+                            errno: function () {
+                                alert("系統錯誤!")
+                            }
+                        })
                     }
-                },
-                errno:function(){
-                    alert("系統錯誤!")
-                }
-            })
-        })
 
-        function serializeToJSON(data){
-            var values = {};
-            for(index in data){
-                values[data[index].name] = data[index].value;
-            }
-            return JSON.stringify(values)
-        }
-    </script>
+                function serializeToJSON(data) {
+                    var values = {};
+                    for (index in data) {
+                        values[data[index].name] = data[index].value;
+                    }
+                    return JSON.stringify(values)
+                }
+    })
+            </script>
 </body>
 
 </html>
