@@ -80,7 +80,7 @@
 </head>
 
 <body>
-    <%- include("./shared/header.ejs") %>
+    <%- include("./layout/header.ejs") %>
     <div class="content">
         <div class="Register">
             <div class="desing">
@@ -94,12 +94,12 @@
                         <tr>
                             <td><%= title[i] %> </td>
                         </tr>
-                    <% } %>
-                </table>
+                        <% } %>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <%- include("./shared/footer.ejs") %>
+        <%- include("./layout/footer.ejs") %>
     <script src="./js/slide.js"></script>
 </body>
 
