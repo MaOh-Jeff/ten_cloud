@@ -1,44 +1,34 @@
 var createError = require('http-errors');
 var express = require('express');
-var bodyParser = require('body-parser');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var db = require('./db/db')
-
-// 定義頁面
-var loginRouter = require('./routes/login');
-var signupRouter = require('./routes/signup');
-var memberRouter = require('./routes/member');
-var memberdataRouter = require('./routes/memberdata');
-var chatRouter = require('./routes/chat');
-var indexRouter = require('./routes/index');
-
 var session = require('express-session');
 
+// 定義頁面
+// 首頁
+var indexRouter = require('./routes/index');
+// 商品列表, 比價車, 商品資訊頁
 var productRouter = require('./routes/product');
 var parityRouter = require('./routes/parity');
 var productDetailRouter = require('./routes/productDetail');
 
 var app = express();
-app.use(bodyParser.json());
 
  // session設定
- app.use(
+app.use(
   session({
-  secret: 'fhegrgresdfaewef',
-  resave: true,
-  saveUninitialized: true,
-  // cookie: {
-  //   path: ,
-  //   httpOnly: false,
-  //   secure: false,
-  //   maxAge: 
-  // }
+    secret: 'fhegrgresdfaewef',
+    resave: true,
+    saveUninitialized: true,
+    // cookie: {
+    //   path: ,
+    //   httpOnly: false,
+    //   secure: false,
+    //   maxAge: 
+    // }
   })
 );
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,26 +43,8 @@ app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
 app.use('/bootstrap-icons', express.static(__dirname + '/node_modules/bootstrap-icons/font'));
 app.use(express.static(path.join(__dirname, 'public')));
-// 頁面設置
-app.use('/login', loginRouter);
-app.use('/signup', signupRouter);
-app.use('/member', memberRouter);
-app.use('/memberdata', memberdataRouter);
-app.use('/chat', chatRouter);
 
-app.post('/add', function(req, res){
-  var body = req.body
-  console.log(body)
-    var sql = `call fsp_member_add(?, ?, ?, ?, ?);`
-    var data = [body.account,body.password,body.full_name,body.nickname,body.email]
-    db.exec(sql, data, function(results, fields) {
-      console.log(results)
-  })
-})
-
-app.post('/login')
-
-app.use('/', indexRouter);
+app.use('/', indexRouter);  
 app.use('/product', productRouter);
 app.use('/parity', parityRouter);
 app.use('/productDetail', productDetailRouter);
