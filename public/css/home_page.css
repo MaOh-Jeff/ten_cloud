@@ -1,6 +1,6 @@
-/* table */
+/* table 共用 */
 table {
-    margin: 30px auto;
+    margin: auto;
     border-collapse: separate;
     border-spacing: 0;
 }
@@ -50,14 +50,15 @@ th:first-child{
     width: 800px;
 }
 
-/* content */
+/* content 共用 */
 .content {
     height: auto;
+    /* height: 1200px; */
 }
 
 .content table {
-    /* width: 85%; */
-    width: 1300px;
+    width: 85%;
+    /* width: 1300px; */
 }
 .content a{
     text-decoration: none;
@@ -66,12 +67,13 @@ th:first-child{
 .content a:hover{
     color: #5a5a5a;
 }
-.compare a{
+.div_compare{
     border: 1px solid ;
-    padding: 5px 15px;
+    padding: 3%;
+    /* padding: 5px 15px; */
     border-radius: 30px;
     background-color: #337ab7; 
-    color: white;
+    color: #ffffff;
 }
 /* 
 ○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
@@ -80,10 +82,6 @@ th:first-child{
 */
 
 /* carousel */
-.carouselBackgroud{
-    /* background-color: rgb(120, 120, 120); */
-}
-
 .carousel_img{
     height: 200px;
 }
@@ -145,5 +143,19 @@ th:first-child{
 }
 /* product */
 .product_img{
-    width: 200px;
+    width: 100%;
+}
+
+/* 
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●○●
+*/
+
+/* dialog */
+
+#compare_product{
+    padding: 2%;
+    border: 2px solid black;
+    background-color: rgb(131, 142, 173);
 }

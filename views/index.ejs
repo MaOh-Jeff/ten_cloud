@@ -6,6 +6,10 @@
     <title>Document</title>
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./js/jquery-ui-1.13.0/jquery-ui-1.13.0/jquery-ui.min.js"></script>
+    <script src="./js/homePage/product_detail.js"></script>
+    <script src="./js/homePage/compare.js"></script>
+    <link rel="stylesheet" href=".js/jquery-ui-1.13.0/jquery-ui-1.13.0/jquery-ui.min.css">
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="./css/resetcss.css">
@@ -14,24 +18,12 @@
 </head>
 
 <body>
-    <header>
-        <div class="HeadLink">
-            <div>
-                <a href="/"><img src="./img/LOGO確定檔_工作區域 1.png" alt=""></a>
-            </div>
-            <div>
-                <a href=""><i class="bi bi-card-list"></i> 商品列表</a>
-                <a href=""><i class="bi bi-cart-check"></i> 比價車</a>
-                <a href=""><i class="bi bi-globe2"></i> 討論區</a>
-            </div>
-        </div>
-        <div class="HeadLogin">
-            <a href="">登入</a>
-        </div>
-    </header>
+    <!-- 導覽列 -->
+    <%- include("./layout/header.ejs") %>
+
     <div style="height: 80px;"></div>
-    <div class="container-fluid carouselBackgroud">
-        <div id="recommendedProductCarousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+    <div class="container-fluid">
+        <div id="recommendedProductCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
             <ol class="carousel-indicators">
                 <li data-target="#recommendedProductCarousel" data-slide-to="0" class="active"></li>
                 <li data-target="#recommendedProductCarousel" data-slide-to="1"></li>
@@ -99,6 +91,62 @@
         <div>
             <table>
                 <tr>
+                    <th class="table_title" colspan="6">熱門比較</th>
+                </tr>
+                <tr class="tr_compare_border">
+                    <% compare_list.forEach((row, key) => { %>
+                        <% if(key%2==0){ %>
+                        <td class="td_product_backgroud td_border_left"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <td class="td_product_backgroud"><img class="product_img" src="./img/icon/vs.png" alt=""></td>
+                        <% }else{ %>
+                        <td class="td_product_backgroud td_border_right"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
+                        <% } %>
+                    <% }) %>
+                </tr>
+                <tr>
+                    <% compare_list.forEach((row, key) => { %>
+                        <td><%= row.product_name %></td>
+                        <% if(key%2==0){ %>
+                        <td class="compare add_parity">
+                            <div class="div_compare compare_click">
+                                <p>比較</p>
+                                <input type="text" name="product_01" value="<%= compare_list[key].product_id %>" hidden>
+                            <input type="text" name="product_02" value="<%= compare_list[key+1].product_id %>" hidden>
+                            </div>
+                        </td>
+                        <% } %>
+                    <% }) %>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table>
+                <tr>
+                    <th class="table_title" colspan="5">最新商品</th>
+                </tr>
+                <tr>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border td_product_backgroud single_product">
+                        <img class="product_img" src="<%= row.img_path %>" alt="">
+                        <input type="text" name="product_id" value="<%= row.product_id %>" hidden>
+                    </td>
+                <% }) %>
+                </tr>
+                <tr>
+                <% product_list.forEach((row, key) => { %>
+                    <td class="td_border single_product">
+                        <%= row.product_name %>
+                        <input type="text" name="product_id" value="<%= row.product_id %>" hidden>
+                    </td>
+                <% }) %>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div>
+            <table>
+                <tr>
                     <th class="table_title" colspan="4">熱門話題</th>
                 </tr>
                 <tr>
@@ -120,60 +168,26 @@
                 <% }) %>
             </table>
         </div>
-        <br>
-        <div>
-            <table>
-                <tr>
-                    <th class="table_title" colspan="5">最新商品</th>
-                </tr>
-                <tr>
-                <% product_list.forEach((row, key) => { %>
-                    <td class="td_border td_product_backgroud"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
-                <% }) %>
-                </tr>
-                <tr>
-                <% product_list.forEach((row, key) => { %>
-                    <td class="td_border"><a href=""><%= row.product_name %></a></td>
-                <% }) %>
-                </tr>
-            </table>
-        </div>
-        <br>
-        <div>
-            <table>
-                <tr>
-                    <th class="table_title" colspan="6">熱門比較</th>
-                </tr>
-                <tr class="tr_compare_border">
-                    <% compare_list.forEach((row, key) => { %>
-                        <% if(key%2==0){ %>
-                        <td class="td_product_backgroud td_border_left"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
-                        <td class="td_product_backgroud"><img class="product_img" src="./img/icon/vs.png" alt=""></td>
-                        <% }else{ %>
-                        <td class="td_product_backgroud td_border_right"><img class="product_img" src="<%= row.img_path %>" alt=""></td>
-                        <% } %>
-                    <% }) %>
-                </tr>
-                <tr>
-                    <% compare_list.forEach((row, key) => { %>
-                        <td><%= row.product_name %></td>
-                        <% if(key%2==0){ %>
-                        <td class="compare"><a href="" >比較</a></td>
-                        <% } %>
-                    <% }) %>
-                </tr>
-            </table>
-        </div>
     </div>
-    <div class="blank">
-        <footer>
-            <p>本站所刊載之圖文內容等版權皆屬原廠商所有，非經同意請勿轉載。</p>
-            <p>T e n C l o u d 比 價 網</p>
-        </footer>
-    </div>
+
+    <!-- footer -->
+    <%- include("./layout/footer.ejs") %>
     <script src="./js/slide.js"></script>
 
-    
+    <div id="compare_product">
+        <div>
+            <div class="card-deck">
+                <div id="compare_01" class="card">
+                    <img src="" class="card-img-top" alt="">
+                    <div class="card-body"></div>
+                </div>
+                <div id="compare_02" class="card">
+                    <img src="" class="card-img-top" alt="">
+                    <div class="card-body"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
