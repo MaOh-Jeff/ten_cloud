@@ -75,7 +75,7 @@
 <body>
 
     <!-- 導覽列 -->
-    <%- include("./shared/header.ejs") %>
+    <%- include("./layout/header.ejs") %>
 
 
     <div class="d-flex align-items-start  ">
@@ -317,7 +317,7 @@
     </div>
     
      <!-- footer -->
-     <%- include("./shared/footer.ejs") %>
+     <%- include("./layout/footer.ejs") %>
 
     <script src="./javascripts/slide.js"></script>
     <script src="./javascripts/footerPosition.js"></script>
@@ -343,7 +343,7 @@
                 // alert( index+":" + $( tabEl[index]).hasClass("active")  );
             })
 
-            var API="http://localhost:3001/parity/delete"
+            var API="http://localhost:3000/parity/delete"
             var payload = { prodId:this.dataset.id, tempNavbar:tempNavbar };
             $.post(API,payload,function(data,status){
 
