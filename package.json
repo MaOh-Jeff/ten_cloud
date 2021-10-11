@@ -1,9 +1,10 @@
 {
-  "name": "ten-cloud",
-  "version": "0.0.0",
+  "name": "tan_cloud",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
