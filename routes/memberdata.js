@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/cancel',function(req,res){
+router.post('/',function(req,res){
   var memberData = req.session.user;
   var data =JSON.parse(JSON.stringify(memberData.data));
   var member_id = data[0].member_id;
@@ -30,7 +30,7 @@ router.post('/cancel',function(req,res){
   var sql = 'call fsp_member_enable_toggle(?);'
   var data = [member_id]
   db.exec(sql,data,function(results, fields){
-      console.log('已註銷帳號');
+      console.log(results);
   })
 })
 module.exports = router;

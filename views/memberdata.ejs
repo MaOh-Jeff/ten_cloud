@@ -92,25 +92,6 @@
             JSONData = serializeToJSON(data)
             console.log(JSONData)
 
-            $.ajax({
-                url: "/cancel",
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                data: JSONData,
-
-                success: function (res) {
-                    var res = JSON.parse(res)
-                    if (res.errno === 1) {
-                        alert("註銷成功!")
-                        location.herf = "/"
-                    } else if (res.errno === 0) {
-                        alert("註銷失敗!")
-                    }
-                },
-                errno: function () {
-                    alert("系統錯誤!")
-                }
-            })
         })
 
         function serializeToJSON(data) {

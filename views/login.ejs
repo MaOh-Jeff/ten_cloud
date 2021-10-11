@@ -91,7 +91,10 @@
                         alert("登入成功!")
                         location.herf = "/"
                     } else if (res.errno === 0) {
-                        alert("登入失敗!")
+                        alert("密碼錯誤!")
+                    }
+                    else if(res.errno === 2){
+                        alert("帳號問題!")
                     }
                 },
                 errno: function () {
