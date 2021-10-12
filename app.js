@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 登出
 app.get('/logout', function (req, res) {
   delete req.session.user;
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 // catch 404 and forward to error handler
