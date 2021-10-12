@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/resetcss.css">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/layout.css">
     <style>
         .desing a {
             text-decoration: none;
@@ -91,7 +92,7 @@
                 success: function (res) {
                     var res = JSON.parse(res)
                     if (res.errno === 1) {
-                        location.href = "/member"
+                        location.href = "/"
                         alert("登入成功!")
                     } else if (res.errno === 0) {
                         alert("密碼錯誤!")
