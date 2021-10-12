@@ -76,6 +76,11 @@ footer{
     letter-spacing: 3px;
     font-family:Microsoft JhengHei;
 }
+.blank-bootom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 /* -----以下為註冊頁面用------ */
 .Register {
           
