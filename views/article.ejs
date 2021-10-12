@@ -8,7 +8,7 @@
         <title>Document</title>
         <link rel="stylesheet" href="/css/resetcss.css">
         <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="./css/layout.css">
+        <link rel="stylesheet" href="/css/layout.css">
         <style>
             table {
                 margin-left:auto; 
@@ -48,7 +48,7 @@
     </head>
     
     <body>
-        <%- include("./layout/header.ejs") %>
+        <%- include("./layout/spareheader.ejs") %>
         <table>
             <tr>
                 <th class="column1">發佈者</th>
@@ -59,7 +59,7 @@
                 <td><pre><%= content %></pre> </td>
             </tr>              
         </table>
-        <%- include("./layout/footer.ejs") %>
+        <%- include("./layout/sparefooter.ejs") %>
         <script src="/js/slide.js"></script>
         <script src="/js/jquery-3.4.1.js"></script>
         <script src="/js/footerPosition.js"></script>
