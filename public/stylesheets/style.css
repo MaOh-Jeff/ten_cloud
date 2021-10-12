@@ -59,11 +59,17 @@ header img{
 }
 .content{
     padding-top: 90px;
-    height: 2000px;
+    
 }
 #blank{
     margin: 0;
     padding: 0;
+}
+.blank-bootom{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    
 }
 footer{
     width: 100%;
@@ -75,10 +81,4 @@ footer{
     letter-spacing: 3px;
     font-family:Microsoft JhengHei;
     margin-top: 2vw;
-}
-.blank-bootom{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    
 }
