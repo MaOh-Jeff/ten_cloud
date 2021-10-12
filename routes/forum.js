@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../db/db');
 var moment = require("moment");
+var { Success, Error } = require('../response');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -44,8 +45,10 @@ router.post('/',function(req,res){
   var sql = `call fsp_forum_add(? ,? ,?, ?);`
   var data = [body.type,body.title,member_id,body.content]
   db.exec(sql, data, function(results, fields) {
-    console.log(results);
-})
-});
+      res.send(
+        JSON.stringify(new Success('login success'))
+      )
+    })
+  })
 
 module.exports = router;

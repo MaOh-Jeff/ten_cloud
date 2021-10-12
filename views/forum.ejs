@@ -129,9 +129,13 @@
     <%- include("./layout/header.ejs") %>
         <div class="tab">
             <a href="?type=5&text=1" class="tablinks" onclick="openCity(event, 'CPU')">CPU</a>
-            <a href="?type=5&text=1" class="tablinks" onclick="openCity(event, 'GPU')">顯示卡</a>
+            <a href="?type=4&text=1" class="tablinks" onclick="openCity(event, 'GPU')">顯示卡</a>
             <a href="?type=2&text=1" class="tablinks" onclick="openCity(event, 'MB')">主機板</a>
+            <% if(!session.user) { %>
+            <a href="/login">請先登入</a>
+                <% }else { %>
             <a class="tablinks" onclick="openCity(event, 'publish')">發表新文章</a>
+                    <% } %>
         </div>
 
 
@@ -208,30 +212,20 @@
             <div class="article">
                 <br>
                 <h1>發布新文章</h1>
+                <br>
                 <form action="" id="form">
-                    <span>類別:</span>
-
-
+                    <span>類別:</span><br>
                     <span>CPU</span>
                     <input type="radio" name="type" value="5">
-
-
-
                     <span>顯示卡</span>
                     <input type="radio" name="type" value="4">
-
-
-
                     <span>主機板</span>
                     <input type="radio" name="type" value="2">
-
-
                     <br><br>
                     <p>標題:</p>
                     <textarea id="review" name="title" rows="3" cols="45"></textarea>
-                    <br><br>
+                    <br>
                     <p>內容:</p>
-                    <br><br>
                     <textarea id="review" name="content" rows="15" cols="50"></textarea>
                     <button type="button" id="submit">提交</button>
                 </form>
