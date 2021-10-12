@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 var session = require('express-session');
@@ -39,7 +38,6 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use(bodyParser.json());
 app.use(cookieParser());
 
 // view engine setup
