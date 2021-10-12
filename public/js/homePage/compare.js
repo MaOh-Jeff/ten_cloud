@@ -12,7 +12,7 @@ $( function() {
         draggable: false,
         resizable : false,
         modal: true,
-        width: "1000",
+        width: "800",
         position: {
             my: "center",
             at: "center",
@@ -43,6 +43,9 @@ $( function() {
         // 裝填資訊
         console.log(1, compare_list);
         var info_html = '';
+        // combination card info
+        // title
+        $("#compare_product").dialog( "option", "title", compare_list.product_01.type);
 
         info_html = `<img src="${compare_list.product_01.img_path}" class="card-img-top" alt="">`;
         var compareKey = compare_list.product_01.specification_key;
@@ -51,7 +54,8 @@ $( function() {
             if(compareValue[i].length < 15){
                 info_html += `<div class="card-body">${compareKey[i]}：${compareValue[i]}</div>`;
             }
-        }   
+        }
+        info_html += `<div class="card-body">價錢：$${compare_list.product_01.price}</div>`;
         $("#compare_01").html(info_html);
 
         info_html = `<img src="${compare_list.product_02.img_path}" class="card-img-top" alt="">`;
@@ -61,7 +65,8 @@ $( function() {
             if(compareValue[i].length < 15){
                 info_html += `<div class="card-body">${compareKey[i]}：${compareValue[i]}</div>`;
             }
-        }   
+        }
+        info_html += `<div class="card-body">價錢：$${compare_list.product_02.price}</div>`;
         $("#compare_02").html(info_html);
 
 
