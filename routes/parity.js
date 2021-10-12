@@ -492,7 +492,7 @@ router.get('/', function (req, res, next) {
           prodListId: [ "v-motherboard-tab", "v-Memory-tab", "v-PowerSupplier-tab", "v-graphicsCard-tab", "v-CPU-tab"],
           prodListTarget: [ "#v-motherboard", '#v-Memory', "#v-PowerSupplier", "#v-graphicsCard", "#v-CPU"],
           prodList: [ '主機板', '記憶體', '電源供應器', '顯示卡', 'CPU'],
-          session: req.session.productId,
+          sessionProductId: req.session.productId,
           
           // ----------比價車
           // 比價車的欄位

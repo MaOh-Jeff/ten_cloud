@@ -340,7 +340,7 @@
     <script>
         
         $("button.prod").click(function(){
-            var API="http://localhost:3001/product/parity"
+            var API="http://localhost:3000/product/parity"
             var payload = { prodId:this.dataset.id };
             $.post(API,payload,function(data,status){
                 // alert(data);
