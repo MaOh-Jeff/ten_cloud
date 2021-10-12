@@ -41,7 +41,7 @@ $( function() {
         });
 
         // 裝填資訊
-        // console.log(1, compare_list);
+        console.log(1, compare_list);
         var info_html = '';
 
         info_html = `<img src="${compare_list.product_01.img_path}" class="card-img-top" alt="">`;
@@ -72,23 +72,12 @@ $( function() {
     });
 
     // 點選空白處, 關閉卡片資訊
-    $(document).click(function(event){
+    $(document).on("click", function(event){
         var c_modal = $("#compare_product");
 
         if(!c_modal.is(event.target) && c_modal.has(event.target).length === 0){ // Mark 1
             $("#compare_product").dialog("close");
         }
-        // $("#card_info").dialog("close");
+        // $("#compare_product").dialog("close");
     });
 } );
-
-// $(".add_parity").on('click', function(event){
-//     var product_01 = $(this).find("input[name='product_01']").val();
-//     var product_02 = $(this).find("input[name='product_02']").val();
-//     // console.log(product_01, product_02);
-//     var url = '/product/parity';
-//     $.post(url, {prodId: product_01}, (event)=>{});
-//     $.post(url, {prodId: product_02}, (event)=>{});
-    
-//     window.location.href = "/parity";
-// });
