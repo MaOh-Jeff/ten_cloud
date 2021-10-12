@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
     <script src="./javascripts/jquery.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/layout.css">
 
     <style>
         .btn:active:focus,
@@ -77,7 +75,7 @@
 <body>
 
     <!-- 導覽列 -->
-    <%- include("./layout/header.ejs") %>
+    <%- include("./shared/header.ejs") %>
 
 
     <div class="d-flex align-items-start  ">
@@ -139,8 +137,11 @@
                                             <% } %> 
                                             <% if(k>0 && i>0) {%>
                                                 <% if(i==1) {%>
-                                                    <td> <img src="<%= prodMotherboard[k-1][i] %>" alt="...">
-                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMotherboard[k-1] %>" data-id="<%= prodIdMotherboard[k-1] %>" >X</button></td>
+                                                    <td> 
+                                                        <img src="<%= prodMotherboard[k-1][i] %>" alt="...">
+                                                        <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMotherboard[k-1] %>" data-id="<%= prodIdMotherboard[k-1] %>" 
+                                                        data-bs-toggle="modal"  data-bs-target="#exampleModal"   >X</button>
+                                                    </td>
                                                 <% } else{ %>  
                                                     <td><%- prodMotherboard[k-1][i] %></td>
                                                 <% } %> 
@@ -179,8 +180,11 @@
                                             <% } %> 
                                             <% if(k>0 && i>0) {%>
                                                 <% if(i==1) {%>
-                                                    <td> <img src="<%= prodMemory[k-1][i] %>" alt="...">
-                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMemory[k-1] %>" data-id="<%= prodIdMemory[k-1] %>" >X</button></td>
+                                                    <td> 
+                                                        <img src="<%= prodMemory[k-1][i] %>" alt="...">
+                                                        <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdMemory[k-1] %>" data-id="<%= prodIdMemory[k-1] %>" 
+                                                        data-bs-toggle="modal"  data-bs-target="#exampleModal" >X</button>
+                                                    </td>
                                                 <% } else{ %>  
                                                     <td><%- prodMemory[k-1][i] %></td>
                                                 <% } %> 
@@ -219,8 +223,11 @@
                                             <% } %> 
                                             <% if(k>0 && i>0) {%>
                                                 <% if(i==1) {%>
-                                                    <td> <img src="<%= prodPowerSupplier[k-1][i] %>" alt="...">
-                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdPowerSupplier[k-1] %>" data-id="<%= prodIdPowerSupplier[k-1] %>" >X</button></td>
+                                                    <td> 
+                                                        <img src="<%= prodPowerSupplier[k-1][i] %>" alt="...">
+                                                        <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdPowerSupplier[k-1] %>" data-id="<%= prodIdPowerSupplier[k-1] %>" 
+                                                        data-bs-toggle="modal"  data-bs-target="#exampleModal"   >X</button>
+                                                    </td>
                                                 <% } else{ %>  
                                                     <td><%- prodPowerSupplier[k-1][i] %></td>
                                                 <% } %> 
@@ -259,8 +266,11 @@
                                             <% } %> 
                                             <% if(k>0 && i>0) {%>
                                                 <% if(i==1) {%>
-                                                    <td> <img src="<%= prodGraphicsCard[k-1][i] %>" alt="...">
-                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdGraphicsCard[k-1] %>" data-id="<%= prodIdGraphicsCard[k-1] %>" >X</button></td>
+                                                    <td> 
+                                                        <img src="<%= prodGraphicsCard[k-1][i] %>" alt="...">
+                                                        <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdGraphicsCard[k-1] %>" data-id="<%= prodIdGraphicsCard[k-1] %>" 
+                                                        data-bs-toggle="modal"  data-bs-target="#exampleModal"    >X</button>
+                                                    </td>
                                                 <% } else{ %>  
                                                     <td><%- prodGraphicsCard[k-1][i] %></td>
                                                 <% } %> 
@@ -299,8 +309,11 @@
                                             <% } %> 
                                             <% if(k>0 && i>0) {%>
                                                 <% if(i==1) {%>
-                                                    <td> <img src="<%= prodCPU[k-1][i] %>" alt="...">
-                                                    <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdCPU[k-1] %>" data-id="<%= prodIdCPU[k-1] %>" >X</button></td>
+                                                    <td> 
+                                                        <img src="<%= prodCPU[k-1][i] %>" alt="...">
+                                                        <button type="button" class="btn btn-outline-dark prod" id="deletePowerSupplier<%= prodIdCPU[k-1] %>" data-id="<%= prodIdCPU[k-1] %>" 
+                                                        data-bs-toggle="modal"  data-bs-target="#exampleModal"    >X</button>
+                                                    </td>
                                                 <% } else{ %>  
                                                     <td><%- prodCPU[k-1][i] %></td>
                                                 <% } %> 
@@ -318,8 +331,30 @@
         </div>
     </div>
     
+
+    <!-- 按鈕彈出視窗模組 -->
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+        <div class="modal-dialog modal-dialog-centered"  >
+            <div class="modal-content" style=" background-color: rgba(0, 0, 0, 0.342); color:white; ">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> 商品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="modal-body mx-auto h2"  >
+                    商品已刪除
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+
      <!-- footer -->
-     <%- include("./layout/footer.ejs") %>
+     <%- include("./shared/footer.ejs") %>
 
     <script src="./javascripts/slide.js"></script>
     <script src="./javascripts/footerPosition.js"></script>
@@ -345,12 +380,15 @@
                 // alert( index+":" + $( tabEl[index]).hasClass("active")  );
             })
 
-            var API="http://localhost:3000/parity/delete"
+            var API="http://localhost:3001/parity/delete"
             var payload = { prodId:this.dataset.id, tempNavbar:tempNavbar };
             $.post(API,payload,function(data,status){
 
-                location.reload();
-                alert(data);
+                setTimeout(function(){ 
+                    location.reload();
+                 }, 1000);
+                
+                // alert(data);
                         
             })
 

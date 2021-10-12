@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="./stylesheets/style.css">
     <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
     <script src="./javascripts/jquery.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="./css/layout.css">
 
     <style>
         .btn:active:focus,
@@ -149,7 +147,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodName[i] %></span> <hr />
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodId[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodId[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +171,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodNameMotherboard[i] %></span> <hr />
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMotherboard[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMotherboard[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +197,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodNameMemory[i] %></span> <hr />
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMemory[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdMemory[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +222,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodNamePowerSupplier[i] %></span> <hr />
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdPowerSupplier[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdPowerSupplier[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -244,7 +246,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodNameGraphicsCard[i] %></span> <hr />
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdGraphicsCard[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdGraphicsCard[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -267,7 +270,8 @@
                                     <div class="card-body">
                                         <div class="text-center">
                                             <span class="card-title small "><%= prodNameCPU[i] %></span> <hr/>
-                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdCPU[i] %>">+</button>
+                                            <button type="button" class="btn btn-outline-dark prod" data-id="<%= prodIdCPU[i] %>"
+                                            data-bs-toggle="modal"  data-bs-target="#exampleModal"   >+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -278,8 +282,28 @@
             </div>
         </div>
     </div>
+
+
+    <!-- 按鈕彈出視窗模組 -->
+    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"  >
+        <div class="modal-dialog modal-dialog-centered"  >
+            <div class="modal-content" style=" background-color: rgba(0, 0, 0, 0.342); color:white; ">
+                <!-- <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"> 商品</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div> -->
+                <div class="modal-body mx-auto h2"  >
+                    商品已加入比價車
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
     <!-- 分頁 -->
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
         <ul class="pagination  justify-content-center m-4">
             <li class="page-item">
                 <a class="page-link border-0 page-color" href="##" aria-label="Previous">
@@ -300,7 +324,7 @@
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav> -->
 
     <!-- footer -->
     <%- include("./layout/footer.ejs") %>
@@ -316,12 +340,39 @@
     <script>
         
         $("button.prod").click(function(){
-            var API="http://localhost:3000/product/parity"
+            var API="http://localhost:3001/product/parity"
             var payload = { prodId:this.dataset.id };
             $.post(API,payload,function(data,status){
-                alert(data);
-            })
-        })
+                // alert(data);
+                
+                
+                
+            });
+
+            // -----alert的背景改顏色
+
+            // ----待研究----點選商品後alert的視窗可以知道是哪件商品
+            // var exampleModal = document.getElementById('exampleModal');
+            // exampleModal.addEventListener('show.bs.modal', function (event) {
+
+            //     var button = event.relatedTarget;
+
+            //     var modalTitle = exampleModal.querySelector('.modal-title');
+            //     modalTitle.textContent = "123";
+            // });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
     </script>
 </body>
 
