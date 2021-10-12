@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/resetcss.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/layout.css">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #b9b9b9;
+            margin-top: 90px;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab a {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            text-decoration: none;
+            color: black;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab a:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab a.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 80%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            border: 2px solid #dddddd;
+            text-align: left;
+            padding: 20px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #b9b9b9;
+        }
+
+        .article {
+            text-align: center;
+
+        }
+
+        .article {
+            position: relative;
+            margin: auto;
+            top: 10%;
+            width: 400px;
+            height: 500px;
+            background-color: #e8e8e8;
+            border-radius: 30px;
+            border-top: 10px solid #b9b9b9;
+        }
+
+        textarea {
+            border: 1px solid black;
+            outline: none;
+        }
+
+        .article button {
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: 2px solid black;
+            border-radius: 30px;
+            background-color: #b9b9b9;
+            transition: 0.4s;
+        }
+
+        .article button:hover {
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: 2px solid #3b3b3b;
+            border-radius: 30px;
+            background-color: #e8e8e8;
+        }
+        .Pagination{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .Pagination a{
+            text-decoration: none;
+            font-size: 20px;
+            color: black;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("./layout/header.ejs") %>
+        <div class="tab">
+            <a href="?type=5&text=1" class="tablinks" onclick="openCity(event, 'CPU')">CPU</a>
+            <a href="?type=5&text=1" class="tablinks" onclick="openCity(event, 'GPU')">顯示卡</a>
+            <a href="?type=2&text=1" class="tablinks" onclick="openCity(event, 'MB')">主機板</a>
+            <a class="tablinks" onclick="openCity(event, 'publish')">發表新文章</a>
+        </div>
+
+
+        <div id="CPU" class="tabcontent" style="display: block;">
+            <table>
+                <tr>
+                    <th>發佈者</th>
+                    <th>文章標題</th>
+                    <th>發布時間</th>
+                </tr>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
+                    <tr>
+                        <td><%= promulgator[i] %> </td>
+                        <td><a href="/article/<%= +forum_id[i] %> "><%= title[i] %></a></td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
+                    </tr> 
+                <% } %>
+
+            </table>
+            <div class="Pagination">
+                <a href="?type=5&text=1">1</a>
+                <a href="?type=5&text=2">2</a>
+                <a href="?type=5&text=3">3</a>
+            </div>
+        </div>
+
+        <div id="GPU" class="tabcontent">
+            <table>
+                <tr>
+                    <th>發佈者</th>
+                    <th>文章標題</th>
+                    <th>發布時間</th>
+                </tr>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
+                    <tr>
+                        <td><%= promulgator[i] %> </td>
+                        <td><%= title[i] %> </td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
+                    </tr> 
+                <% } %>
+
+            </table>
+            <div class="Pagination">
+                <a href="?type=4&text=1">1</a>
+                <a href="?type=4&text=2">2</a>
+                <a href="?type=4&text=3">3</a>
+            </div>
+        </div>
+
+        <div id="MB" class="tabcontent">
+            <table>
+                <tr>
+                    <th>發佈者</th>
+                    <th>文章標題</th>
+                    <th>發布時間</th>
+                </tr>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
+                    <tr>
+                        <td><%= promulgator[i] %> </td>
+                        <td><%= title[i] %> </td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
+                    </tr> 
+                <% } %>
+
+            </table>
+            <div class="Pagination">
+                <a href="?type=2&text=1">1</a>
+                <a href="?type=2&text=2">2</a>
+                <a href="?type=2&text=3">3</a>
+            </div>
+        </div>
+
+        <div id="publish" class="tabcontent">
+            <div class="article">
+                <br>
+                <h1>發布新文章</h1>
+                <form action="" id="form">
+                    <span>類別:</span>
+
+
+                    <span>CPU</span>
+                    <input type="radio" name="type" value="5">
+
+
+
+                    <span>顯示卡</span>
+                    <input type="radio" name="type" value="4">
+
+
+
+                    <span>主機板</span>
+                    <input type="radio" name="type" value="2">
+
+
+                    <br><br>
+                    <p>標題:</p>
+                    <textarea id="review" name="title" rows="3" cols="45"></textarea>
+                    <br><br>
+                    <p>內容:</p>
+                    <br><br>
+                    <textarea id="review" name="content" rows="15" cols="50"></textarea>
+                    <button type="button" id="submit">提交</button>
+                </form>
+            </div>
+        </div>
+        
+             <%- include("./layout/footer.ejs") %>
+
+             <script src="./js/jquery-3.4.1.js"></script>
+            <script src="./js/slide.js"></script>
+            <script src="./js/footerPosition.js"></script>
+            <script>
+                function openCity(evt, Components) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(Components).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+            </script>
+            <!-- POST發布文章 -->
+            <script>
+                $('#submit').on('click', function () {
+                    var data = $('#form').serializeArray()
+                    JSONData = serializeToJSON(data)
+                    console.log(JSONData)
+
+                    $.ajax({
+                        url: "/forum",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        data: JSONData,
+                        success: function (res) {
+                            var res = JSON.parse(res)
+                            if (res.errno === 1) {
+                                alert("發布成功!")
+                            } else if (res.errno === 0) {
+                                alert("發布失敗!")
+                            }
+                        },
+                        errno: function () {
+                            alert("系統錯誤!")
+                        }
+                    })
+                })
+
+                function serializeToJSON(data) {
+                    var values = {};
+                    for (index in data) {
+                        values[data[index].name] = data[index].value;
+                    }
+                    return JSON.stringify(values)
+                }
+            </script>
+</body>
+
+</html>

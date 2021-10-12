@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/resetcss.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="./css/layout.css">
+        <style>
+            table {
+                margin-left:auto; 
+                margin-right:auto;
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 70%;
+                border: 1px solid #ddd;
+                margin-top: 100px;
+            }
+    
+            th,
+            td {
+                border: 2px solid #ddd;
+                text-align: left;
+                padding: 10px;
+            }
+    
+            th {
+                background-color: #b9b9b9;
+            }
+    
+            .First td {
+                padding: 10px;
+                height: 10px;
+                border: 0ch;
+            }
+    
+            td {
+                height: 500px;
+            }
+    
+            .column1 {
+                width: 10%;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <%- include("./layout/header.ejs") %>
+        <table>
+            <tr>
+                <th class="column1">發佈者</th>
+                <th>文章內容</th>
+            </tr>
+            <tr class="First">
+                <td><%= nickname %> </td>
+                <td><pre><%= content %></pre> </td>
+            </tr>              
+        </table>
+        <%- include("./layout/footer.ejs") %>
+        <script src="/js/slide.js"></script>
+        <script src="/js/jquery-3.4.1.js"></script>
+        <script src="/js/footerPosition.js"></script>
+    
+    </body>
+    
+    </html>

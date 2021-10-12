@@ -21,6 +21,8 @@ var addRouter = require('./routes/add')
 var trackRouter = require('./routes/track');
 var publishedRouter = require('./routes/published')
 var altermemberdataRouter = require('./routes/altermemberdata');
+var forumRouter = require('./routes/forum');
+var articleRouter = require('./routes/article');
 
 var app = express();
 
@@ -66,6 +68,9 @@ app.use('/add', addRouter);
 app.use('/track', trackRouter);
 app.use('/published', publishedRouter);
 app.use('/altermemberdata', altermemberdataRouter);
+app.use('/forum', forumRouter);
+app.use('/article',articleRouter);
+
 // statis resource
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist/'));
 app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
