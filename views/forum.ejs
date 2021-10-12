@@ -125,7 +125,7 @@
 </head>
 
 <body>
-    <%- include("./shared/header.ejs") %>
+    <%- include("./layout/header.ejs") %>
         <div class="tab">
             <a  class="tablinks" onclick="openCity(event, 'CPU')">CPU</a>
             <a  class="tablinks" onclick="openCity(event, 'GPU')">顯示卡</a>
@@ -141,11 +141,11 @@
                     <th>文章標題</th>
                     <th>發布時間</th>
                 </tr>
-                <% for(var i=0; i<9 ; i++) { %>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
                     <tr>
                         <td><%= promulgator[i] %> </td>
                         <td><a href="/article/<%= +forum_id[i] %> "><%= title[i] %></a></td>
-                        <td><%= time[i] %> </td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
                     </tr> 
                 <% } %>
 
@@ -164,11 +164,11 @@
                     <th>文章標題</th>
                     <th>發布時間</th>
                 </tr>
-                <% for(var i=0; i<9 ; i++) { %>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
                     <tr>
                         <td><%= promulgator[i] %> </td>
                         <td><%= title[i] %> </td>
-                        <td><%= time[i] %> </td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
                     </tr> 
                 <% } %>
 
@@ -187,11 +187,11 @@
                     <th>文章標題</th>
                     <th>發布時間</th>
                 </tr>
-                <% for(var i=0; i<9 ; i++) { %>
+                <% for(var i=0; i<promulgator.length ; i++) { %>
                     <tr>
                         <td><%= promulgator[i] %> </td>
                         <td><%= title[i] %> </td>
-                        <td><%= time[i] %> </td>
+                        <td><%= moment(time[i]).format("yyyy-MM-DD HH:mm:ss") %></td>
                     </tr> 
                 <% } %>
 
@@ -237,7 +237,7 @@
             </div>
         </div>
         
-        <%- include("./shared/footer.ejs") %>
+        <%- include("./layout/footer.ejs") %>
 
             <script src="./js/slide.js"></script>
             <script src="./js/jquery-3.4.1.js"></script>

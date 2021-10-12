@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../db/db');
+var moment = require("moment");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,7 +28,8 @@ router.get('/', function(req, res, next) {
       title: title,
       promulgator: promulgator,
       time: time,
-      forum_id: forum_id
+      forum_id: forum_id,
+      moment: moment
     });
   })
 });
