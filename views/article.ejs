@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="/css/resetcss.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <style>
+            table {
+                margin-left:auto; 
+                margin-right:auto;
+                border-collapse: collapse;
+                border-spacing: 0;
+                width: 80%;
+                border: 1px solid #ddd;
+                margin-top: 90px;
+            }
+    
+            th,
+            td {
+                border: 2px solid #ddd;
+                text-align: left;
+                padding: 10px;
+            }
+    
+            th {
+                background-color: #b9b9b9;
+            }
+    
+            .First td {
+                padding: 10px;
+                height: 10px;
+                border: 0ch;
+            }
+    
+            td {
+                height: 500px;
+            }
+    
+            .column1 {
+                width: 10%;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <header>
+            <div class="HeadLink">
+                <img src="/img/LOGO確定檔_工作區域 1.png" alt="">
+                <div>
+                    <a href="">商品列表</a>
+                    <a href="">比價車</a>
+                    <a href="">討論區</a>
+                </div>
+            </div>
+            <div class="HeadLogin">
+                <a href="">登入</a>
+            </div>
+        </header>
+        <table>
+            <tr>
+                <th class="column1">發佈者</th>
+                <th>文章標題</th>
+            </tr>
+            <tr class="First">
+                <td><%= nickname %> </td>
+                <td><%= content %> </td>
+            </tr>              
+        </table>
+        <div class="blank" id="blank">
+            <footer>
+                <p>本站所刊載之圖文內容等版權皆屬原廠商所有，非經同意請勿轉載。</p>
+                <p>T e n C l o u d 比 價 網</p>
+            </footer>
+        </div>
+        <script src="/js/slide.js"></script>
+        <script src="/js/jquery-3.4.1.js"></script>
+        <script src="/js/footerPosition.js"></script>
+    
+    </body>
+    
+    </html>

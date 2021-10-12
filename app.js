@@ -1,9 +1,12 @@
 var createError = require('http-errors');
 var express = require('express');
+var bodyParser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var { Success, Error , Account} = require('./response');
+var db = require('./db/db');
 
 // 定義頁面
 var loginRouter = require('./routes/login');
@@ -14,6 +17,8 @@ var addRouter = require('./routes/add')
 var trackRouter = require('./routes/track');
 var publishedRouter = require('./routes/published')
 var altermemberdataRouter = require('./routes/altermemberdata');
+var forumRouter = require('./routes/forum');
+var articleRouter = require('./routes/article')
 
 var app = express();
 app.use(session({
@@ -34,7 +39,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-
+app.use(bodyParser.json());
 app.use(cookieParser());
 
 // view engine setup
@@ -54,6 +59,78 @@ app.use('/add', addRouter);
 app.use('/track', trackRouter);
 app.use('/published', publishedRouter);
 app.use('/altermemberdata', altermemberdataRouter);
+app.use('/forum', forumRouter);
+app.use('/article',articleRouter);
+
+app.post('/signup', function (req, res) {
+  var body = req.body
+  console.log(body);
+  var sql = `call fsp_member_add(?, ?, ?, ?, ?);`
+  var data = [body.account, body.password, body.full_name, body.nickname, body.email]
+  db.exec(sql, data, function (results, fields) {
+    var message = JSON.stringify(results[0][0]);
+    console.log(message);
+    if (message.includes('註冊成功') != false) {
+      res.send(
+        JSON.stringify(new Success('login success'))
+      )
+    }
+    else{
+      res.end(
+        JSON.stringify(new Error('login failed'))
+      )
+    }
+  })
+})
+
+app.post('/login', function (req, res) {
+  var sql = `call fsp_member_login(?, ?);`
+  var data = [req.body.account, req.body.password]
+  db.exec(sql, data, function (results, fields) {
+    console.log(results);
+    var data = JSON.stringify(results);
+    // var dataclear = JSON.parse(data);
+    // var member_id = JSON.stringify(results,['member_id'])
+    // var account = JSON.stringify(results,['account'])
+    // var full_name = JSON.stringify(results,['full_name'])
+    // var nickname = JSON.stringify(results,['nickname'])
+    // var email = JSON.stringify(results,['email'])
+    // console.log(dataclear)
+  
+
+    if (data.includes('密碼錯誤') != false) {
+      res.end(
+        JSON.stringify(new Error('login failed'))
+      )
+
+    }
+    else if(data.includes('帳號不存在') != false){
+      res.end(
+        JSON.stringify(new Account('login failed'))
+      )
+    }
+
+    else if(data.includes('帳號禁用') != false){
+      res.end(
+        JSON.stringify(new Account('login failed'))
+      )
+    }
+    else {
+      req.session.user = {
+        data: results[0],
+        // member_id: member_id ,
+        // account: account,
+        // full_name: full_name,
+        // nickname: nickname,
+        // email: email
+      }
+      res.send(
+        JSON.stringify(new Success('login success'))
+      )
+    }
+    console.log(req.session.user);
+  })
+})
 
 
 app.get('/logout', function (req, res) {
