@@ -12,7 +12,7 @@ $( function() {
         draggable: false,
         resizable : false,
         modal: true,
-        width: "800",
+        width: "750",
         position: {
             my: "center",
             at: "center",
@@ -48,6 +48,7 @@ $( function() {
         $("#compare_product").dialog( "option", "title", compare_list.product_01.type);
 
         info_html = `<img src="${compare_list.product_01.img_path}" class="card-img-top" alt="">`;
+        info_html += `<div class="card-body" style="font-weight: 600;">商品名稱：${compare_list.product_01.product_name}</div>`;
         var compareKey = compare_list.product_01.specification_key;
         var compareValue = compare_list.product_01.specification_value;
         for(i=0; i< compareKey.length; i++){
@@ -59,6 +60,7 @@ $( function() {
         $("#compare_01").html(info_html);
 
         info_html = `<img src="${compare_list.product_02.img_path}" class="card-img-top" alt="">`;
+        info_html += `<div class="card-body" style="font-weight: 600;">商品名稱：${compare_list.product_02.product_name}</div>`;
         var compareKey = compare_list.product_02.specification_key;
         var compareValue = compare_list.product_02.specification_value;
         for(i=0; i< compareKey.length; i++){
